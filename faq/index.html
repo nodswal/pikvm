@@ -1,0 +1,1358 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open and cheap DIY IP-KVM on Raspberry Pi">
+      
+      
+      
+        <meta name="author" content="Maxim Devaev">
+      
+      
+        <link rel="canonical" href="https://pikvm.github.io/pikvm/faq/">
+      
+      <link rel="icon" href="../_assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>FAQ - PiKVM Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=arial,+sans-serif:300,400,400i,700%7Cmonospace&display=fallback">
+        <style>:root{--md-text-font-family:"arial, sans-serif";--md-code-font-family:"monospace"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../_assets/user.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent="pink">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#faq-troubleshooting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PiKVM Handbook" class="md-header__button md-logo" aria-label="PiKVM Handbook" data-md-component="logo">
+      
+  <img src="../_assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PiKVM Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FAQ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pikvm/pikvm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pikvm/pikvm
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PiKVM Handbook" class="md-nav__button md-logo" aria-label="PiKVM Handbook" data-md-component="logo">
+      
+  <img src="../_assets/logo.png" alt="logo">
+
+    </a>
+    PiKVM Handbook
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pikvm/pikvm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pikvm/pikvm
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v3/" class="md-nav__link">
+        PiKVM v3 HAT guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../first_steps/" class="md-nav__link">
+        First steps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          FAQ
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        FAQ
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-questions" class="md-nav__link">
+    Common questions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps" class="md-nav__link">
+    First steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-problems" class="md-nav__link">
+    Video problems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-problems-keyboard-mouse-mass-storage-etc" class="md-nav__link">
+    USB problems (keyboard, mouse, mass storage, etc)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-ui-problems" class="md-nav__link">
+    Web UI problems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-problems-wi-fi-atx-etc" class="md-nav__link">
+    Hardware problems (Wi-Fi, ATX, etc)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Networking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Networking" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Networking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" data-md-state="indeterminate" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Internet access
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internet access" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Internet access
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../port_forwarding/" class="md-nav__link">
+        Port forwarding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale/" class="md-nav__link">
+        Tailscale VPN
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wifi/" class="md-nav__link">
+        Setting up Wi-Fi
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Video
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Video" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Video
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webrtc/" class="md-nav__link">
+        H.264 / WebRTC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video/" class="md-nav__link">
+        Working with video
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edid/" class="md-nav__link">
+        Tuning HDMI EDID
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Peripheral devices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Peripheral devices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Peripheral devices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" data-md-state="indeterminate" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Keyboard & mouse
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Keyboard & mouse" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Keyboard & mouse
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mouse/" class="md-nav__link">
+        Mouse modes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bluetooth_hid/" class="md-nav__link">
+        Bluetooth HID
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arduino_hid/" class="md-nav__link">
+        Arduino HID (USB, PS/2)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../msd/" class="md-nav__link">
+        Mass Storage Drive
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usb_ethernet/" class="md-nav__link">
+        Ethernet-over-USB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usb_serial/" class="md-nav__link">
+        Serial-over-USB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpio/" class="md-nav__link">
+        GPIO (pins, relays, lamps, etc)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Advanced usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced usage" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vnc/" class="md-nav__link">
+        Using VNC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiport/" class="md-nav__link">
+        Multiport KVM-over-IP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wol/" class="md-nav__link">
+        Wake-on-LAN the server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipmi/" class="md-nav__link">
+        IPMI & Redfish integration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus/" class="md-nav__link">
+        Prometheus monitoring
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" data-md-state="indeterminate" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d_printing/" class="md-nav__link">
+        Cases for 3D printing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../building_os/" class="md-nav__link">
+        Building PiKVM OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        HTTP API reference
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-questions" class="md-nav__link">
+    Common questions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps" class="md-nav__link">
+    First steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-problems" class="md-nav__link">
+    Video problems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-problems-keyboard-mouse-mass-storage-etc" class="md-nav__link">
+    USB problems (keyboard, mouse, mass storage, etc)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-ui-problems" class="md-nav__link">
+    Web UI problems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-problems-wi-fi-atx-etc" class="md-nav__link">
+    Hardware problems (Wi-Fi, ATX, etc)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="faq-troubleshooting">FAQ &amp; Troubleshooting<a class="headerlink" href="#faq-troubleshooting" title="Permanent link">&para;</a></h1>
+<p>As a first step, we recommend carefully reading our documentation on <a href="https://github.com/pikvm/pikvm">GitHub</a>. Most steps to successfully set up your PiKVM are already described there. If you run into any issues you can check this page which will list common errors. If that still doesn't help you you're welcome to raise an <a href="https://github.com/pikvm/pikvm/issues">issue ticket</a> or <a href="https://discord.gg/bpmXfz5">join our Discord</a> for further help.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you can't find an answer to your question here, try the <a href="../community_faq/">Community FAQ</a>. It will be merged with this page in the future.</p>
+</div>
+<h2 id="common-questions">Common questions<a class="headerlink" href="#common-questions" title="Permanent link">&para;</a></h2>
+<details class="question"><summary>Can I connect multiple servers to a single PiKVM?</summary><p>Yes, but it will require additional work to set up. See <a href="../multiport/">this page</a>.</p>
+</details>
+<details class="question"><summary>How can I get the access to PiKVM in my local network over Internet?</summary><p>You can use port forwarding for port 443 on your router if it has an external IP address. In all other cases, you can use the excellent free VPN service <a href="../tailscale/">Tailscale</a>, which is configured on PiKVM with a <a href="../tailscale/">few simple commands</a>.</p>
+</details>
+<details class="question"><summary>Can I use PiKVM for gaming?</summary><p>No, because:</p>
+<ul>
+<li>For HDMI-CSI bridge, bus bandwidth is not enough to transmit more than 1080p50.</li>
+<li>For HDMI-USB dongle, high latency and low video quality.</li>
+<li>General hardware video capture differs from software streaming and introduces additional latency.</li>
+<li>PiKVM can't transmit audio at this time. It will be available on PiKVM v3 HAT at some point in the future (implemented in the hardware, but doesn't have software support).</li>
+</ul>
+</details>
+<details class="question"><summary>Can PiKVM do 4K video?</summary><ul>
+<li>For HDMI-CSI bridge, no. There is not enough bandwidth in the CSI bus for that much data. 1080p50 will max out the bandwidth.</li>
+<li>For the USB capture devices: technically yes, they will downsample to something smaller to meet the USB 2.0 bandwidth limitations, so the source may be 4k, but the stream will not.</li>
+<li>The 4K real-time video will not fit through the network anyway.</li>
+</ul>
+</details>
+<details class="question"><summary>Where does the video latency come from?</summary><p>Here is the chain of transferring an image to your browser or VNC client.</p>
+<p><code>Capture device -&gt; Compression -&gt; Network -&gt; Decompression -&gt; Rendering</code></p>
+<p>100-200ms is very, very fast for this. But we are working to speed things up even more.</p>
+</details>
+<details class="question"><summary>Does PiKVM support sound?</summary><p>At this time sound is not supported on any platform however, once sound is implimented, it will only be available for PiKVM v3 HAT. Due to a hardware bug in HDMI-CSI bridges, sound may or may not work.</p>
+</details>
+<details class="question"><summary>Can I use PiKVM with non-Raspberry boards (Orange, Nano, etc)?</summary><p>Yes, but you will have to prepare the operating system yourself. As for the PiKVM software, you will need to replace some config files (such as UDEV rules). If you are a developer or an experienced system administrator, you will not have any problems with this. In addition, we are open to patches. If you need help with this, please contact us via <a href="https://discord.gg/bpmXfz5">Discord</a>.</p>
+</details>
+<details class="question"><summary>Is PiKVM OS its own custom distro?</summary><p>No. PiKVM OS is an <a href="https://archlinuxarm.org">Arch Linux ARM</a> with our own repository for KVM-related packages. We distribute OS images (that is, our Arch Linux ARM build) to simplify installation, since PiKVM requires some tuning of the OS and special partitioning of the memory card.</p>
+</details>
+<details class="question"><summary>Why is PiKVM OS based on Arch Linux ARM and not Raspbian / Raspberry Pi OS?</summary><p>There are several reasons:</p>
+<ul>
+<li>Several years ago, when PiKVM was just starting out, Raspbian didn't have a minimalistic image and the transition to systemd was in full swing, which is why the distribution was not too stable.</li>
+<li>Raspbian did not have all the necessary packages in the repositories to satisfy most software dependencies.</li>
+<li>PiKVM was born as a pet project, and the founder likes Arch the most.</li>
+</ul>
+<p>However, we plan to provide an alternative OS image based on Raspbian in the future - now it is quite stable.</p>
+</details>
+<h2 id="first-steps">First steps<a class="headerlink" href="#first-steps" title="Permanent link">&para;</a></h2>
+<details class="question"><summary>I can't find PiKVM IP address in my network</summary><p>Follow <a href="../first_steps/#getting-access-to-pikvm">this guide</a>.</p>
+</details>
+<details class="question"><summary>What is the default password? How do I change it?</summary><p>There are two types of accounts: OS and PiKVM (web interface) accounts. The system account <code>root</code> can be used for SSH/UART access and has the password <code>root</code>. The web interface account is called <code>admin</code> and has the password <code>admin</code>. The PiKVM account cannot be used for SSH access and vice versa.</p>
+<p>To change passwords, use the following commands (under root):</p>
+<div class="highlight"><pre><span></span><code>su -  <span class="c1"># If you&#39;re in the webterm</span>
+rw  <span class="c1"># Switch filesystem to read-write mode</span>
+passwd root  <span class="c1"># Change OS root password</span>
+kvmd-htpasswd <span class="nb">set</span> admin  <span class="c1"># Change web ui admin password</span>
+ro  <span class="c1"># Back to read-only</span>
+</code></pre></div>
+</details>
+<details class="question"><summary>How do I get root access in the web terminal?</summary><p>The web terminal works with the account <code>kvmd-webterm</code>. This is a regular user with no administrator privileges and. In addition, <code>sudo</code> and login are disabled for this user for security reasons. To get <code>root</code> access, you need to use the <code>su -</code> command (minus is important) and <strong>enter the root password</strong>.</p>
+</details>
+<details class="question"><summary>Where is the PiKVM configuration located?</summary><p>Almost all KVMD (the main daemon controlling PiKVM) configuration files located in <code>/etc/kvmd</code>. You can also find nginx configs and SSL certificates there. KVMD configs use <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML</a> syntax. The specific platform parameters can be found in the file <code>/etc/kvmd/main.yaml</code> and <strong>you should never edit it</strong>. Use <code>/etc/kvmd/override.yaml</code> to redefine the system parameters.</p>
+<p>Another files that are also not recommended for editing have read-only permissions. If you edit any of these files, you will need to manually make changes to them when you upgrade your system. You can view the current configuration and all available KVMD parameters using the command <code>kvmd -m</code>.</p>
+</details>
+<details class="question"><summary>I can't edit any file on PiKVM. Why is the system in read-only mode?</summary><p>The PiKVM file system is always mounted in read-only mode. This measure prevents it from being damaged by a sudden power outage. To change the configuration you must first switch the filesystem to write mode using the command <code>rw</code> from root. After the changes, be sure to run the command <code>ro</code> to switch it back to read-only. If you get a message that the file system is busy, then the easiest way is to perform a <code>reboot</code>.</p>
+</details>
+<details class="question"><summary>I want to get read-write filesystem all of the time</summary><div class="admonition danger">
+<p class="admonition-title">DON'T DO THIS</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">DON'T DO THIS</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">DON'T DO THIS</p>
+</div>
+<p><strong>Seriously, DON'T</strong>. Read-only mode increases the life of the memory card and protects the filesystem from power loss failures. See the question above ^ ^ ^</p>
+<p>You can turn it off, but don't say you weren't warned.</p>
+<details class="danger"><summary>DON'T OPEN THIS SPOILER AND DON'T DO THIS</summary><p>Okay, fine.</p>
+<ul>
+<li>Edit <code>/boot/cmdline.txt</code> and change option <code>ro</code> to <code>rw</code>.</li>
+<li>Do the same in <code>/etc/fstab</code> for the <code>/boot</code> partition.</li>
+<li>Comment <code>tmpfs</code> lines in <code>/etc/fstab</code> for <code>/var/lib</code> and <code>/var/log</code>.</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">But again: DON'T DO THIS</p>
+</div>
+</details>
+</details>
+<details class="question"><summary>How to install or remove any packages in PiKVM OS?</summary><p>PiKVM OS is based on Arch Linux ARM and uses the <a href="https://wiki.archlinux.org/title/Pacman">pacman</a> package manager.</p>
+<ul>
+<li>Switch filesystem to RW-mode: <code>rw</code>.</li>
+<li>Update the package cache: <code>pacman -Syy</code>.</li>
+<li>Find some packages (<code>emacs</code> for example): <code>pacman -Ss emacs</code>.</li>
+<li>Install it: <code>pacman -S emacs</code>.</li>
+<li>Remove it: <code>pacman -R emacs</code>.</li>
+<li>Switch filesystem to RO-mode: <code>ro</code>.</li>
+</ul>
+</details>
+<details class="question"><summary>How do I update PiKVM with the latest software?</summary><p>PiKVM OS is based on Arch Linux ARM and is fully updated from the repository by a regular package manager. Connect to your PiKVM via ssh and run:</p>
+<div class="highlight"><pre><span></span><code># rw
+# pacman -Syu
+# reboot
+</code></pre></div>
+<p>Pacman saves all installed packages in a compressed format so that you can roll back to the old version if something goes wrong. After you've updated and made sure everything works, it makes sense to clear the package cache so that it doesn't take up space on the SD card: <code>rw; rm -rf /var/cache/pacman/pkg; ro</code>.</p>
+</details>
+<details class="question"><summary>I don't need ATX functions. How do I disable this in the Web UI?</summary><p>If you don't need ATX power control you can disable the relevant Web UI menu in <code>/etc/kvmd/override.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">kvmd</span><span class="p">:</span>
+    <span class="nt">atx</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">disabled</span>
+</code></pre></div>
+<p>... then restart <code>kvmd</code>:</p>
+<div class="highlight"><pre><span></span><code># systemctl restart kvmd
+</code></pre></div>
+</details>
+<details class="question"><summary>How to disable the web terminal?</summary><div class="highlight"><pre><span></span><code># systemctl disable --now kvmd-webterm
+</code></pre></div>
+</details>
+<details class="question"><summary>How to completely disable authorization in PiKVM?</summary><p>Edit the file <code>/etc/kvmd/override.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">kvmd</span><span class="p">:</span>
+    <span class="nt">auth</span><span class="p">:</span>
+        <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<p>... then restart <code>kvmd</code>:</p>
+<div class="highlight"><pre><span></span><code>[root@pikvm ~]# systemctl restart kvmd
+</code></pre></div>
+</details>
+<h2 id="video-problems">Video problems<a class="headerlink" href="#video-problems" title="Permanent link">&para;</a></h2>
+<details class="question"><summary>I can see the video but I can't see the WebRTC switch</summary><p>WebRTC is an alternative mode for the default MJPEG and it's only supported on v2+ platforms with the CSI video capture device. See <a href="../webrtc/">this</a> page to solve any problems with WebRTC.</p>
+</details>
+<details class="question"><summary>PiKVM does not show the video from the computer at all</summary><ul>
+<li>Double-check that the video capture device is connected correctly. For the <a href="/README.md#for-the-hdmi-csi-bridge">CSI bridge</a>, this should be exactly the camera port, for the <a href="/README.md#for-the-hdmi-usb-dongle">USB dongle</a>, strictly the port indicated in the picture.</li>
+<li>Some laptops do not output any signal until you switched the output (usually via the FN + and an F5 key on the keyboard).</li>
+<li>Your computer may have turned on sleep mode for the monitor. Move the mouse and turn it off.</li>
+</ul>
+</details>
+<details class="question"><summary>The video works in the booted OS, but not in the BIOS/UEFI</summary><p>The problem appears on Intel NUC, GA-H77-DS3H, and some other devices with using CSI bridge. All you need to do is <a href="../edid/">change the EDID data</a>. This is the information about supported resolutions that the CSI bridge reports to your computer.</p>
+</details>
+<details class="question"><summary>Glitchy or wrong BIOS/UEFI resolution</summary><p>On some motherboards, the BIOS may be displayed at a lower resolution, or with some rendering issues/glitches, specially on newer ASUS ones. Like this:</p>
+<p><img src="bios_glitch.png" alt="ASUS BIOS glitch" width="400"/></p>
+<p>This can be solved by enabling the <strong>Compatibility Support Module (CSM)</strong> in your BIOS, usually under the <strong>Boot</strong> options.</p>
+<p>If you can't or don't want to enable the CSM, you can try connecting a DisplayPort monitor, or a <a href="http://amazon.com/s?k=displayport+dummy+plug">dummy plug</a>. If you remove the DP cable/adapter the bug will reappear.</p>
+<p>If none of this works, try connecting the DP cable first, boot into the BIOS, disable the CSM and shutdown (do not restart) your PC. Then, boot into the BIOS and enable the CSM before shutting down your PC. Then connect the HDMI and turn your PC on again.</p>
+</details>
+<details class="question"><summary>CSI bridge does not work with official Raspberry Pi PoE HAT</summary><p>Details <a href="https://github.com/pikvm/pikvm/issues/6">here</a>. The reason is that the <a href="https://www.raspberrypi.org/products/poe-hat">official HAT</a> has a built-in fan controller that conflicts with the TC358743 chip of the bridge. The solution is to disable the fan control and connect it to the power line so that it works continuously. To turn off the controller you need to add the line <code>disable_poe_fan=1</code> to <code>/boot/config.txt</code>.</p>
+</details>
+<details class="question"><summary>The video freezes a few seconds after the start, restarting the Web UI or VNC does not help</summary><p>The story is <a href="https://github.com/raspberrypi/firmware/issues/1562">here</a>. Very-very rarely, Raspberry boards can have a hardware defect that causes some of the chip blocks to be unstable under normal power. The solution is to slightly increase the power supply, as in overclocking. Add <code>over_voltage=1</code> (or <code>over_voltage=2</code> if previous doesn't help) to <code>/boot/config.txt</code> and perform <code>reboot</code>.</p>
+<p>To make sure that you are facing this particular problem, first perform a diagnostic:</p>
+<ul>
+<li>Boot the PiKVM without the specified options.</li>
+<li>Open Web-UI and wait for freezing.</li>
+<li>Click <code>System -&gt; Reset Stream</code>.</li>
+<li>Click <code>System -&gt; Open log</code> and make sure that the log contains messages like <code>H264: Can't wait for the VCOS semaphore</code>.</li>
+<li>Make sure that the last message from ustreamer was <code>H264: Configuring MMAL encoder</code> (not counting messages about connecting and disconnecting stream clients).</li>
+</ul>
+</details>
+<details class="question"><summary>No image from computer with Linux + Awesome WM</summary><p>Sometimes Awesome WM on Linux can't recognize a video output change on a cable. That is, if the cable was first inserted into the monitor, and then you reconnected it to PiKVM - it may happen that you will not see the image. It seems that the problem is Awesome WM, since for example with KDE, it is not reproducable. If you turn on your workstation with PiKVM already connected, everything will work fine.</p>
+</details>
+<h2 id="usb-problems-keyboard-mouse-mass-storage-etc">USB problems (keyboard, mouse, mass storage, etc)<a class="headerlink" href="#usb-problems-keyboard-mouse-mass-storage-etc" title="Permanent link">&para;</a></h2>
+<details class="question"><summary>My computer does not recognize USB of PiKVM v2+ at all</summary><ul>
+<li>Make sure that you have used the correct USB cable with DATA lines to connect the OTG port for the Raspberry to the computer. You may have decided to use a USB hub instead of a Y-cable and <strong>it won't work</strong>. Use good cables and follow the instructions :)</li>
+<li>In rare cases, some very buggy BIOSes does not like HID and Mass Storage in one USB device. You can either <a href="../msd/#disable-msd">disable Mass Storage</a>, or use <a href="../arduino_hid/">Arduino HID</a> to physically separate them.</li>
+</ul>
+</details>
+<details class="question"><summary>BIOS/UEFI does not recognize USB of v2+, but computer does</summary><p>If you are using a USB hub or USB PCI controller, this may not be handled by your BIOS. Try to use another USB port. Some ports may have a built-in hub on the motherboard and a buggy BIOS that can't handle it.</p>
+</details>
+<details class="question"><summary>The keyboard works in BIOS/UEFI, but the mouse does not</summary><p>The BIOS does not support absolute mouse mode, which is preferred by PiKVM. In this case, <a href="../mouse/">you can enable relative or dual positioning mode</a>.</p>
+</details>
+<details class="question"><summary>I can't wake up suspended computer on v2+</summary><p>This feature is experimental and requires manual activation. Perform a full system update, edit <code>/etc/kvmd/override.yaml</code>, and reboot. After that, you can use remote wakeup by pressing any keyboard key or mouse button.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">otg</span><span class="p">:</span>
+    <span class="nt">remote_wakeup</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+</details>
+<details class="question"><summary>Mass storage drive working (I can boot an image from PiKVM v2+), but keyboard/mouse does not</summary><p>In rare cases, some very buggy BIOSes does not like HID and Mass Storage in one USB device. You can either <a href="../msd/#disable-msd">disable Mass Storage</a>, or use <a href="../arduino_hid/">Arduino HID</a> to physically separate them.</p>
+</details>
+<details class="question"><summary>Buggy absolute mouse on Windows 98 as managed server</summary><p>How to fix:</p>
+<ul>
+<li><a href="../mouse/#fixing-the-absolute-mouse-on-windows-98">v2+/OTG</a>.</li>
+<li><a href="../arduino_hid/#fixing-the-usb-absolute-mouse-on-windows-98">Arduino HID</a>.</li>
+</ul>
+</details>
+<details class="question"><summary>Big mouse latency on another Raspberry as managed server</summary><p>Unusual case: RPi4 is used as a PiKVM to control RPi3. In this case, the mouse delay may be several seconds. To fix it, just add line <code>usbhid.mousepoll=0</code> to <code>/boot/config.txt</code> to the server (i.e. RPI3 in our case) and reboot it.</p>
+</details>
+<h2 id="web-ui-problems">Web UI problems<a class="headerlink" href="#web-ui-problems" title="Permanent link">&para;</a></h2>
+<details class="question"><summary>Chrome Certificate Issue</summary><p>The latest versions of Chrome do not allow access to the page with a self signed certificate, so if you see the following screen when loading the PiKVM website:</p>
+<p><img src="chrome.png" alt="Chrome Blocking" width="400"/></p>
+<p>You can proceed by typing <code>thisisunsafe</code> and Chrome will then load the page.</p>
+</details>
+<details class="question"><summary>Pressing ESC in full screen mode causes this to close</summary><p>Your browser does not support <a href="https://caniuse.com/mdn-api_keyboard_lock">keyboard lock</a>. Right now, only Chrome implements this.</p>
+</details>
+<details class="question"><summary>I can't use this on iOS: the Web UI network indicator flashes yellow</summary><p>Safari on iOS contains an old bug that prevents a web application from connecting over a web socket if you use a self-signed certificate on the server (the default for PiKVM). There are two solutions:</p>
+<ul>
+<li>Install a valid SSL certificate for PiKVM host to <code>/etc/kvmd/nginx/ssl</code>.</li>
+<li>Disable HTTPS at all in <code>/etc/kvmd/nginx/nginx.conf</code>. To do this, comment some lines <a href="https://github.com/pikvm/kvmd/blob/master/configs/nginx/nginx.conf#L39">like in this file</a> and restart web server: <code>systemctl restart kvmd-nginx</code>.</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Don't do this for insecure networks or the Internet. Your passwords and what you type on the keyboard will be transmitted in unencrypted form.</p>
+</div>
+</details>
+<details class="question"><summary>The Web UI doesn't work properly in Firefox while it works fine in Chrome</summary><p>This might be related to your specific hardware combination or browser hardware acceleration. Try <a href="https://support.mozilla.org/en-US/kb/hardware-acceleration-and-windowblinds-crash">disabling hardware acceleration in Firefox</a> or updating your GPU and chipset drivers.</p>
+</details>
+<details class="question"><summary>Unexpected interruption while loading the image for Mass storage drive</summary><p>If problems occur when uploading even a small disk image it may be due to unstable network operation or antivirus software. It is well known that Kaspersky antivirus cuts off PiKVM connections during uploading, so you should add the PiKVM website to Kaspersky's list of exceptions or not filter web requests with the antivirus. Antivirus programs can also affect the performance of certain interface elements, for example the quality slider. For Kaspersky, the steps to add the network address of PiKVM's website to the exclusion list is: <code>Protection -&gt; Private browsing -&gt; Categories and exclusions -&gt; Exclusions</code>.</p>
+</details>
+<details class="question"><summary>I can't copy clipboard contents from the server (the machine controlled via PiKVM) to the client</summary><p>The clipboard only works from the client to the server not vice versa. There is currently no way to do it.</p>
+</details>
+<h2 id="hardware-problems-wi-fi-atx-etc">Hardware problems (Wi-Fi, ATX, etc)<a class="headerlink" href="#hardware-problems-wi-fi-atx-etc" title="Permanent link">&para;</a></h2>
+<details class="question"><summary>No Wi-Fi on Raspberry Pi Zero W</summary><ul>
+<li>If your device is unable to connect to the Wi-Fi network that you have setup check the 2.4 GHz Wi-Fi channel used by your Wi-Fi access point. 
+  If channels 12 to 14 are used (some countries have banned these channels) try to use a channel between 1 and 11.</li>
+<li>Some Zeros contain a defective Wi-Fi chip. You can either return the device to the store, or try the <a href="https://github.com/pikvm/pikvm/issues/137">software workaround</a>.</li>
+</ul>
+</details>
+<details class="question"><summary>LEDs/Switches does not work in ATX control</summary><p>Double check your wiring as per <a href="/README.md#setting-up-the-v2">the documentation</a>. Make sure you placed the relays (G3VM-61A1) in the correct orientation. The relays for switches (Power, Reset) have a different orientation than the ones for LEDs.</p>
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../first_steps/" class="md-footer__link md-footer__link--prev" aria-label="Previous: First steps" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              First steps
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../port_forwarding/" class="md-footer__link md-footer__link--next" aria-label="Next: Port forwarding" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Port forwarding
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018-2021 Maxim Devaev
+          </div>
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

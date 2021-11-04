@@ -1,0 +1,1449 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open and cheap DIY IP-KVM on Raspberry Pi">
+      
+      
+      
+        <meta name="author" content="Maxim Devaev">
+      
+      
+        <link rel="canonical" href="https://pikvm.github.io/pikvm/msd/">
+      
+      <link rel="icon" href="../_assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Mass Storage Drive - PiKVM Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=arial,+sans-serif:300,400,400i,700%7Cmonospace&display=fallback">
+        <style>:root{--md-text-font-family:"arial, sans-serif";--md-code-font-family:"monospace"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../_assets/user.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent="pink">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mass-storage-drive" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PiKVM Handbook" class="md-header__button md-logo" aria-label="PiKVM Handbook" data-md-component="logo">
+      
+  <img src="../_assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PiKVM Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mass Storage Drive
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pikvm/pikvm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pikvm/pikvm
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PiKVM Handbook" class="md-nav__button md-logo" aria-label="PiKVM Handbook" data-md-component="logo">
+      
+  <img src="../_assets/logo.png" alt="logo">
+
+    </a>
+    PiKVM Handbook
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pikvm/pikvm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pikvm/pikvm
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" data-md-state="indeterminate" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v3/" class="md-nav__link">
+        PiKVM v3 HAT guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../first_steps/" class="md-nav__link">
+        First steps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Networking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Networking" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Networking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" data-md-state="indeterminate" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Internet access
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internet access" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Internet access
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../port_forwarding/" class="md-nav__link">
+        Port forwarding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale/" class="md-nav__link">
+        Tailscale VPN
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wifi/" class="md-nav__link">
+        Setting up Wi-Fi
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Video
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Video" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Video
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webrtc/" class="md-nav__link">
+        H.264 / WebRTC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video/" class="md-nav__link">
+        Working with video
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edid/" class="md-nav__link">
+        Tuning HDMI EDID
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Peripheral devices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Peripheral devices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Peripheral devices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" data-md-state="indeterminate" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Keyboard & mouse
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Keyboard & mouse" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Keyboard & mouse
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mouse/" class="md-nav__link">
+        Mouse modes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bluetooth_hid/" class="md-nav__link">
+        Bluetooth HID
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arduino_hid/" class="md-nav__link">
+        Arduino HID (USB, PS/2)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mass Storage Drive
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Mass Storage Drive
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disable-msd" class="md-nav__link">
+    Disable MSD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-images-manually-without-web-ui" class="md-nav__link">
+    Upload images manually (without Web UI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-and-writable-drives" class="md-nav__link">
+    Multiple and writable drives
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple and writable drives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-enable-extra-drives" class="md-nav__link">
+    How to enable extra drives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-rw-flash-drive" class="md-nav__link">
+    How to create RW flash drive
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-windows-based-flash-disk-image" class="md-nav__link">
+    Create a Windows based Flash disk image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-drive-image-on-macos" class="md-nav__link">
+    Create a drive image on macOS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-alternative-to-making-a-windows-boot-image-that-does-not-require-a-physical-usb-flash-drive" class="md-nav__link">
+    An alternative to making a Windows boot image that does not require a physical usb flash drive
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usb_ethernet/" class="md-nav__link">
+        Ethernet-over-USB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usb_serial/" class="md-nav__link">
+        Serial-over-USB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpio/" class="md-nav__link">
+        GPIO (pins, relays, lamps, etc)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Advanced usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced usage" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vnc/" class="md-nav__link">
+        Using VNC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiport/" class="md-nav__link">
+        Multiport KVM-over-IP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wol/" class="md-nav__link">
+        Wake-on-LAN the server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipmi/" class="md-nav__link">
+        IPMI & Redfish integration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus/" class="md-nav__link">
+        Prometheus monitoring
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" data-md-state="indeterminate" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3d_printing/" class="md-nav__link">
+        Cases for 3D printing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../building_os/" class="md-nav__link">
+        Building PiKVM OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        HTTP API reference
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disable-msd" class="md-nav__link">
+    Disable MSD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-images-manually-without-web-ui" class="md-nav__link">
+    Upload images manually (without Web UI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-and-writable-drives" class="md-nav__link">
+    Multiple and writable drives
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple and writable drives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-enable-extra-drives" class="md-nav__link">
+    How to enable extra drives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-rw-flash-drive" class="md-nav__link">
+    How to create RW flash drive
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-windows-based-flash-disk-image" class="md-nav__link">
+    Create a Windows based Flash disk image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-drive-image-on-macos" class="md-nav__link">
+    Create a drive image on macOS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-alternative-to-making-a-windows-boot-image-that-does-not-require-a-physical-usb-flash-drive" class="md-nav__link">
+    An alternative to making a Windows boot image that does not require a physical usb flash drive
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="mass-storage-drive">Mass Storage Drive<a class="headerlink" href="#mass-storage-drive" title="Permanent link">&para;</a></h1>
+<h2 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h2>
+<p>This is a feature available on PiKVM v2+ that allows you to emulate a CD-ROM or Flash Drive.</p>
+<p>There are some subtleties that you should know:</p>
+<div class="admonition info">
+<p class="admonition-title">The size of the CD-ROM image is limited to 2.2 GB</p>
+<p>This is a <a href="https://github.com/pikvm/pikvm/issues/322">limitation</a> of the Linux kernel, which currently cannot emulate a DVD.
+To use a larger boot image, use Flash emulation. If this is not possible (the image does not support Flash, for example, for Windows),
+use <a href="#create-a-microsoft-windows-based-flash-disk-image">this</a> recipe.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Changing the media type between CD-ROM and Flash is possible only when the device is reconnected</p>
+<p>For PiKVM v3 HAT, this can be done using the switch <code>System -&gt; Connect main USB</code>.
+In this case, the <strong>media type is determined at the time of connecting the image, and not by clicking on the switch</strong>.
+The switch affects the settings of the future connection. For non-v3 devices,
+you need to either reboot your server or otherwise reinitialize the connection.</p>
+</div>
+<hr />
+<h2 id="disable-msd">Disable MSD<a class="headerlink" href="#disable-msd" title="Permanent link">&para;</a></h2>
+<p>To disable mass storage emulation altogether, you can place the following piece of configuration into <code>/etc/kvmd/override.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">kvmd</span><span class="p">:</span>
+    <span class="nt">msd</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">disabled</span>
+</code></pre></div>
+<h2 id="upload-images-manually-without-web-ui">Upload images manually (without Web UI)<a class="headerlink" href="#upload-images-manually-without-web-ui" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Remount internal storage to rw (read-write):</p>
+<div class="highlight"><pre><span></span><code># kvmd-helper-otgmsd-remount rw
+</code></pre></div>
+</li>
+<li>
+<p>Upload the .ISO image(s) to <code>/var/lib/kvmd/msd/images</code> via scp or similar.</p>
+</li>
+<li>
+<p>Create an empty file in <code>/var/lib/kvmd/msd/meta/</code> with the exact name (case sensitive!) of the uploaded image. This will indicate PiKVM that the uploaded image is okay and can be used. For example:</p>
+<div class="highlight"><pre><span></span><code>/var/lib/kvmd/msd/meta/ubuntu-18.04.4-desktop-amd64.iso.complete
+</code></pre></div>
+</li>
+<li>
+<p>Remount internal storage back to ro (read-only):</p>
+<div class="highlight"><pre><span></span><code># kvmd-helper-otgmsd-remount ro
+</code></pre></div>
+</li>
+</ol>
+<hr />
+<h2 id="multiple-and-writable-drives">Multiple and writable drives<a class="headerlink" href="#multiple-and-writable-drives" title="Permanent link">&para;</a></h2>
+<p>Unless explicitly <a href="#disable-msd">disabled</a> by default, PiKVM creates only one drive for Mass Storage emulation.
+However, you can create additional drives and manage them manually via the terminal.
+This is useful if you want to boot the server from a ISO CD (specified in the web interface), then connect a virtual flash drive
+to the server and download some files from to PiKVM from it.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The presence of an additional Mass Storage Drive should not interfere with the boot, but for reasons of compatibility paranoia, this is disabled by default. We recommend setting up the drives in advance, making sure that booting from the ISO CD is still working, and then using the drives as needed.</p>
+</div>
+<h3 id="how-to-enable-extra-drives">How to enable extra drives<a class="headerlink" href="#how-to-enable-extra-drives" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Switch the root filesystem to <code>rw</code> mode.</p>
+</li>
+<li>
+<p>Edit <code>/etc/kvmd/override.yaml</code> and add these lines:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">otg</span><span class="p">:</span>
+    <span class="nt">devices</span><span class="p">:</span>
+        <span class="nt">drives</span><span class="p">:</span>
+            <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1"># Set it to true to enable</span>
+            <span class="nt">count</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>  <span class="c1"># +1 drive, default value</span>
+            <span class="nt">default</span><span class="p">:</span>  <span class="c1"># Default configuration for the all extra drives</span>
+                <span class="nt">cdrom</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>  <span class="c1"># Default value (false for the generic flash drive)</span>
+                <span class="nt">rw</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> <span class="c1"># Read-only by default</span>
+</code></pre></div>
+<p>If you specify <code>count: N</code>, you will create <code>N</code> additional drives configured the same way, as described in the <code>default</code> section.</p>
+</li>
+<li>
+<p>Perform <code>reboot</code>.</p>
+</li>
+</ol>
+<h3 id="how-to-create-rw-flash-drive">How to create RW flash drive<a class="headerlink" href="#how-to-create-rw-flash-drive" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Switch the root filesystem to <code>rw</code> mode:</p>
+<div class="highlight"><pre><span></span><code># rw
+</code></pre></div>
+</li>
+<li>
+<p>Create the empty image file of the desire size (1Gb in this example).</p>
+<div class="highlight"><pre><span></span><code># dd if=/dev/zero of=/root/flash.img bs=1M count=1000 status=progress
+</code></pre></div>
+</li>
+<li>
+<p>Connect it to the drive 1:</p>
+<div class="highlight"><pre><span></span><code># kvmd-otgmsd -i 1 --set-rw=1 --set-cdrom=0 --set-image=/root/flash.img
+</code></pre></div>
+<p>After that you will have access to the flash drive from the server. <strong>Drive 0 represents a drive that is controlled via a web interface and API. Don't use it with kvmd-otgmsd if you don't know exactly what you're doing.</strong></p>
+</li>
+<li>
+<p>View the driver state:</p>
+<div class="highlight"><pre><span></span><code># kvmd-otgmsd -i 1
+Image file:  /root/flash.img
+CD-ROM flag: no
+RW flag:     yes
+</code></pre></div>
+</li>
+<li>
+<p>To disable the flash drive and view the files on it from the KVM, run:</p>
+<div class="highlight"><pre><span></span><code># kvmd-otgmsd -i 1 --unlock --eject
+</code></pre></div>
+<p><strong>This command will interrupt the current IO operation on ALL DRIVES</strong> including the one that is managed via the web interface. The same result is achieved by clicking the disable media button in the web interface. Right now, the Linux kernel does not allow to distinguish between internal threads that manage different drives. It is recommended to eject the media when you know that this will not cause problems for the other media.</p>
+</li>
+<li>
+<p>Don't forget to remount the root filesystem to read-only mode:</p>
+<div class="highlight"><pre><span></span><code># ro
+</code></pre></div>
+</li>
+<li>
+<p>You can download the resulting image via SCP or mount it as a loop device on the PiKVM.</p>
+</li>
+</ol>
+<hr />
+<h2 id="create-a-windows-based-flash-disk-image">Create a Windows based Flash disk image<a class="headerlink" href="#create-a-windows-based-flash-disk-image" title="Permanent link">&para;</a></h2>
+<p>An alternative version of this can be found below that does not require a physical usb flash</p>
+<p>This procedure will create a disk image of a USB stick. This is mostly required for Windows based images since they are larger than the CDROM based limit of 2.2GB.
+You can create a bootable USB stick with the normal Microsoft tools, e.g. Media Creation Tool.
+Creating a bootable USB stick can also be made from an ISO file with other tools like Rufus.</p>
+<p>Without resizing, the full size of the USB stick will be used, so keep the stick as small as possible (e.g. 4GB or 8GB) but still large enough for all Windows files. The Media Creation tool will tell you what the minimum size is.</p>
+<p>Before creating the image file, you can use a tool like "EaseUS Partition Master Free" or "GParted" to resize the main FAT32 partition on the USB stick. This will save space on PiKVM.</p>
+<p>You can also perform these steps on a separate unix machine and transfer the image over to pikvm with e.g. SCP.
+Or, on Windows you could use a program like PassMark ImageUSB (only for full USB size images) or 'dd' for Windows to create the image. Then use WinSCP to transfer the image over to PiKVM.</p>
+<p>Once you have the desired USB stick perform the following on the RPi to create the image directly to the PiKVM image storage folder.</p>
+<ol>
+<li>
+<p>Insert Windows based USB stick into Pi4, generated with Microsoft USB creation tool. SSH to PiKVM as root.</p>
+<div class="highlight"><pre><span></span><code># dmesg
+[ 3025.025401] usb-storage 2-1:1.0: USB Mass Storage device detected
+[ 3025.038911] scsi host0: usb-storage 2-1:1.0
+[ 3026.132248] scsi 0:0:0:0: Direct-Access     Kingston DataTraveler 3.0 PMAP PQ: 0 ANSI: 6
+[ 3026.771425] sd 0:0:0:0: [sda] 15360000 512-byte logical blocks: (7.86 GB/7.32 GiB)
+[ 3026.790276] sd 0:0:0:0: [sda] Write Protect is off
+[ 3026.802530] sd 0:0:0:0: [sda] Mode Sense: 23 00 00 00
+[ 3026.804450] sd 0:0:0:0: [sda] No Caching mode page found
+[ 3026.814082] sd 0:0:0:0: [sda] Assuming drive cache: write through
+[ 3026.908712]  sda: sda1
+[ 3026.922794] sd 0:0:0:0: [sda] Attached SCSI removable disk
+[root@pikvm ~]#
+</code></pre></div>
+<p>USB devices shows as <code>sda</code>. We will use <code>sda1</code> as the Windows partition.</p>
+</li>
+<li>
+<p>mount msd folder as read/write</p>
+<div class="highlight"><pre><span></span><code># kvmd-helper-otgmsd-remount rw
+</code></pre></div>
+</li>
+<li>
+<p>Create image of USB data PARTITION to an image file, this will take some time, in this case about 12 minutes (RPi4).</p>
+<div class="highlight"><pre><span></span><code># dd if=/dev/sda1 of=/var/lib/kvmd/msd/images/windows10-2004.bin bs=8M status=progress
+4458545152 bytes (4.5 GB, 4.2 GiB) copied, 736 s, 6.1 MB/s
+531+1 records in
+531+1 records out
+4458545152 bytes (4.5 GB, 4.2 GiB) copied, 736.213 s, 6.1 MB/s
+</code></pre></div>
+</li>
+<li>
+<p>Correct ownership of new image and make sure the website reports the file as complete (pay attention to the different folder).</p>
+<div class="highlight"><pre><span></span><code># chown kvmd:kvmd /var/lib/kvmd/msd/images/windows10-2004.bin
+# touch /var/lib/kvmd/msd/meta/windows10-2004.bin.complete
+</code></pre></div>
+</li>
+<li>
+<p>Remount msd folder as read only</p>
+<div class="highlight"><pre><span></span><code># kvmd-helper-otgmsd-remount ro
+</code></pre></div>
+</li>
+<li>
+<p>On PiKVM webpage, under Storage select the new image and connect it in Drive Mode: Flash to the server.</p>
+</li>
+</ol>
+<p>Boot the server and select boot device like you normally would.
+E.g. in a AMI BIOS the boot device is called "Linux File-CD Gadget 0504".</p>
+<hr />
+<h2 id="create-a-drive-image-on-macos">Create a drive image on macOS<a class="headerlink" href="#create-a-drive-image-on-macos" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Open Disk Utility.</li>
+<li><code>File &gt; New Image &gt; Blank Image</code>.</li>
+<li>Save As: <code>pikvm-image.dmg</code>. Name: <code>pikvm-image</code>. Size: 100 MB (or whatever size you want). Format: <code>MS-DOS (FAT)</code>. Partitions: <code>Single partition - GUID Partition Map</code>. Image Format: <code>read/write disk image</code>.</li>
+<li>Click Save.</li>
+<li>The drive will automatically be mounted.</li>
+<li>Copy files (such as BIOS updates) onto the new image (via terminal or drag and drop in Finder).</li>
+<li>Eject image.</li>
+<li>Upload image to PiKVM interface under "Drive".</li>
+<li>Select Drive Mode: <code>Flash</code> and then <code>Connect drive to Server</code>.</li>
+</ol>
+<p>You should be able to then mount it locally on the server, or reboot the device to do things like BIOS updates.</p>
+<hr />
+<h2 id="an-alternative-to-making-a-windows-boot-image-that-does-not-require-a-physical-usb-flash-drive">An alternative to making a Windows boot image that does not require a physical usb flash drive<a class="headerlink" href="#an-alternative-to-making-a-windows-boot-image-that-does-not-require-a-physical-usb-flash-drive" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Physical USB is not needed but external system is mandatory.</li>
+<li>Create Ventoy image (on Ubuntu x86 machine) (Unaware of a windows version).</li>
+</ul>
+<div class="highlight"><pre><span></span><code>dd if=/dev/zero of=ventoy.img bs=1M count=4700 status=progress
+</code></pre></div>
+<ul>
+<li>This makes a ventoy.img file, I would name this what it is EG: <code>ventoy_win10.img</code></li>
+<li>
+<p>At the same time, download Media Creation Tool and select iso</p>
+</li>
+<li>
+<p>On the Ubuntu machine</p>
+</li>
+<li>At the time of this, it was 1.0.51, change to latest version</li>
+</ul>
+<div class="highlight"><pre><span></span><code>wget https://github.com/ventoy/Ventoy/releases/download/v1.0.51/ventoy-1.0.51-linux.tar.gz
+tar zxvf ventoy-1.0.51-linux.tar.gz
+sudo losetup -f ventoy.img
+sudo losetup -l | grep ventoy (To locate which loop device was used)
+sudo losetup /dev/loopXX ventoy.img
+sudo sh ~/ventoy-1.0.51/Ventoy2Disk.sh -i /dev/loopXX (This will make a loopXXp1 and a loopXXp2 and will format both partitions
+cd /media/XXX (Usually your login)
+mkdir ventoy
+sudo mount /dev/loopXXp1 /media/XXX/ventoy
+</code></pre></div>
+<ul>
+<li>Either cp/scp over the .iso you downloaded from the Media tool or use a NFS mount</li>
+</ul>
+<div class="highlight"><pre><span></span><code>sudo cp windows.iso /media/XXX/ventoy
+sudo umount /dev/loopXX
+sudo losetup -d /dev/loopXX
+</code></pre></div>
+<p>ssh into the Ubuntu system (Or whatever OS you are using)</p>
+<ul>
+<li>On PiKVM</li>
+</ul>
+<div class="highlight"><pre><span></span><code>cd /var/lib/kvmd/msd
+mount -o remount,rw .
+</code></pre></div>
+<ul>
+<li>On Ubuntu</li>
+</ul>
+<div class="highlight"><pre><span></span><code>scp ventoy.img root@pikvm:/var/lib/kvmd/msd/images
+</code></pre></div>
+<ul>
+<li>On PiKVM</li>
+</ul>
+<div class="highlight"><pre><span></span><code>touch /var/lib/kvmd/msd/meta/ventoy.img.complete
+</code></pre></div>
+<ul>
+<li>Mount <code>ventoy.img</code> as normal flash and select the PiKVM boot device, it should popup with the VenToy logo with the window.iso as a selection </li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../arduino_hid/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Arduino HID (USB, PS/2)" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Arduino HID (USB, PS/2)
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../usb_ethernet/" class="md-footer__link md-footer__link--next" aria-label="Next: Ethernet-over-USB" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Ethernet-over-USB
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018-2021 Maxim Devaev
+          </div>
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
